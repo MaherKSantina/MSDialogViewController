@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MSDialogViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6t-L6-9uC">
+                                <rect key="frame" x="138.5" y="318" width="98" height="30"/>
+                                <state key="normal" title="Open Popover"/>
+                                <connections>
+                                    <segue destination="rUE-af-pfV" kind="presentation" animates="NO" id="o52-J7-QvM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="c6t-L6-9uC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ice-Gc-FwB"/>
+                            <constraint firstItem="c6t-L6-9uC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="vTB-za-fOI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="212" y="33"/>
+        </scene>
+        <!--Dialog View Controller-->
+        <scene sceneID="d4t-8l-Plp">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="rUE-af-pfV" customClass="DialogViewController" customModule="MSDialogViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AD9-By-l6U">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7k8-JS-g0c">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popover" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pm1-RG-ipY">
+                                        <rect key="frame" x="88" y="53" width="64" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Pm1-RG-ipY" firstAttribute="centerY" secondItem="7k8-JS-g0c" secondAttribute="centerY" id="5gP-Wz-YWE"/>
+                                    <constraint firstAttribute="height" constant="128" id="ERx-uh-LQr"/>
+                                    <constraint firstAttribute="width" constant="240" id="TnQ-e3-AkP"/>
+                                    <constraint firstItem="Pm1-RG-ipY" firstAttribute="centerX" secondItem="7k8-JS-g0c" secondAttribute="centerX" id="maJ-Fi-kbc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7k8-JS-g0c" firstAttribute="centerY" secondItem="AD9-By-l6U" secondAttribute="centerY" id="09T-fK-xHO"/>
+                            <constraint firstItem="7k8-JS-g0c" firstAttribute="centerX" secondItem="AD9-By-l6U" secondAttribute="centerX" id="nOt-Si-0Ui"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Yzo-Ip-Psf"/>
+                    </view>
+                    <connections>
+                        <outlet property="mainView" destination="7k8-JS-g0c" id="E22-DM-Gfr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EUf-ha-6d7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="990" y="33"/>
+        </scene>
+    </scenes>
+</document>
