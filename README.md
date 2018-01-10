@@ -1,5 +1,5 @@
 # MSDialogViewController
-A subclass of UIViewController that will be presented in a popover dialog 
+A subclass of UIViewController that will present a view as a popover dialog.
 
 ![Demo](https://user-images.githubusercontent.com/24646608/34752853-df2dd792-f608-11e7-8a3c-2623bd9d2435.gif)
 
