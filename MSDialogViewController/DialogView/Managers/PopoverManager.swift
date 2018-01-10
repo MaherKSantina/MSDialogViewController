@@ -25,56 +25,80 @@
 import UIKit
 
 /**
- Used to create a Popover View Controller over given View Controller
+ Used to manage a view controller that has a popover. This class handles the showing/hiding of the details view
  */
 class PopoverManager: NSObject {
     
-    var detailsView: UIView! 
-    var backgroundMaskButton: UIButton!
+    //Default animation duration for all animations
+    static let kAnimationDuration: TimeInterval = 0.5
+    
+    ///The main view that will be shown/hidden
+    weak var detailsView: UIView!
+    ///The background mask that will be shown/hidden behind the details view
+    weak var backgroundMaskButton: UIButton!
+    ///Handles the animation for the background mask and details view
     var animationManager = AnimationManager()
     
-    /// Translates details view below its frame and hides background mask
+    /// This function translates the details view below the frame of the view controller's view and hides the background mask. This function should be called in the viewDidLoad function of the view controller
     func viewDidLoad() {
         setupDetailsView()
         setupBackgroundMask()
     }
-    
-    /// Translates details view into its initial position and fades in background mask
-    /// - Parameter completion: Block to be executed after the details are shown
+    /**
+     Translates details view into its initial position and fades in background mask
+     - Parameter completion: Block to be executed after the details view is shown
+     */
     func viewDidAppear(completion: (() -> Void)?) {
         showBackgroundMask()
         showDetails(completion: completion)
     }
-    
+    /**
+     Translates details view into its initial position and fades in background mask
+     - Parameter completion: Block to be executed after the details view is shown
+     */
     func finish(completion: (() -> Void)?){
         hideDetails(completion: completion)
         hideBackgroundMask()
     }
-    
+    /**
+     Sets up the details view by translating it below the view controller's view.
+     */
     private func setupDetailsView(){
         detailsView.transform = CGAffineTransform(translationX: 0, y: detailsView.superview!.frame.height)
     }
-    
+    /**
+     Sets up the background mask by making it invisible.
+     */
     private func setupBackgroundMask(){
         backgroundMaskButton.alpha = 0
     }
-    
-    private func showBackgroundMask() {
+    /**
+     Shows the background mask by setting its alpha to 1 within an animation duration.
+     - Parameter duration: The duration of the animation
+     */
+    private func showBackgroundMask(withAnimationDuration duration: TimeInterval = kAnimationDuration) {
         backgroundMaskButton.alpha = 0
-        UIView.animate(withDuration: 0.5){
+        UIView.animate(withDuration: duration){
             self.backgroundMaskButton.alpha = 1
         }
     }
-    
-    private func hideBackgroundMask() {
+    /**
+     Hides the background mask by setting its alpha to 0 within an animation duration.
+     - Parameter duration: The duration of the animation
+     */
+    private func hideBackgroundMask(withAnimationDuration duration: TimeInterval = kAnimationDuration) {
         backgroundMaskButton.alpha = 1
-        UIView.animate(withDuration: 0.5){
+        UIView.animate(withDuration: duration){
             self.backgroundMaskButton.alpha = 0
         }
     }
-    
-    private func showDetails(completion: (() -> Void)?) {
-        animationManager.springWithCompletion(duration: 0.5, animations: {
+    /**
+     Shows the details view by translating it to its initial position.
+     - Parameter duration: The duration of the animation
+     - Parameter completion: The completion block that will be executed after the animation ends
+     */
+    private func showDetails(withAnimationDuration duration: TimeInterval = kAnimationDuration, completion: (() -> Void)?) {
+        animationManager.springWithCompletion(duration: duration, animations: {
             self.detailsView.transform = CGAffineTransform(translationX: 0, y: 0)
         }, completion: {
             finished in
@@ -82,9 +106,13 @@ class PopoverManager: NSObject {
         
         })
     }
-    
-    private func hideDetails(completion: (() -> Void)?) {
-        animationManager.springWithCompletion(duration: 0.5, animations: {
+    /**
+     Hides the details view by translating it outside the view controller's view.
+     - Parameter duration: The duration of the animation
+     - Parameter completion: The completion block that will be executed after the animation ends
+     */
+    private func hideDetails(withAnimationDuration duration: TimeInterval = kAnimationDuration, completion: (() -> Void)?) {
+        animationManager.springWithCompletion(duration: duration, animations: {
             self.detailsView.transform = CGAffineTransform(translationX: 0, y: self.detailsView.superview!.frame.height)
         }, completion: {
             finished in
