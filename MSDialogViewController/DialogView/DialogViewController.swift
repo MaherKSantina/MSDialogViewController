@@ -9,13 +9,7 @@ class DialogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let color = UIColor.black.withAlphaComponent(0.5)
-        let button = UIButton()
-        button.backgroundColor = color
-        button |> view
-        button.addTarget(self, action: #selector(DialogViewController.backgroundDidPress(_:)), for: .touchUpInside)
-        view.sendSubview(toBack: button)
-        popoverManager.backgroundMaskButton = button
+        addBackgroundMask()
         popoverManager.detailsView = mainView
         popoverManager.viewDidLoad()
     }
@@ -25,16 +19,21 @@ class DialogViewController: UIViewController {
         popoverManager.viewDidAppear(completion: nil)
     }
     
+    func addBackgroundMask() {
+        let color = UIColor.black.withAlphaComponent(0.5)
+        let button = UIButton()
+        button.backgroundColor = color
+        button |> view
+        button.addTarget(self, action: #selector(DialogViewController.backgroundDidPress(_:)), for: .touchUpInside)
+        view.sendSubview(toBack: button)
+        popoverManager.backgroundMaskButton = button
+    }
+    
     @objc
     func backgroundDidPress(_ sender: Any?){
         if dismissOnBackgroundPress {
             close()
         }
-    }
-    
-    func setPopoverView(){
-        popoverManager.detailsView = mainView
-        popoverManager.viewDidLoad()
     }
     
     func close(){
