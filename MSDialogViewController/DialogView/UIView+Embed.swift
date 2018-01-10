@@ -12,7 +12,7 @@ infix operator |>
 
 extension UIView{
     /**
-     Embeds a view inside a view
+     Embeds a view inside another view
      - Parameter left: Embedded
      - Parameter right: Embeddee
      */
