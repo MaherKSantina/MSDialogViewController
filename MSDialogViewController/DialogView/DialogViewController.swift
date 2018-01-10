@@ -26,8 +26,13 @@ import UIKit
 
 class DialogViewController: UIViewController {
 
+    ///The main view that will be shown/hidden
     @IBOutlet weak var mainView: UIView!
+    
+    ///The manager that will handle hiding/showing the main view and background mask
     let popoverManager = PopoverManager()
+    
+    ///Boolean that specifies whether tapping on the background mask will dismiss the popover or not
     @IBInspectable var dismissOnBackgroundPress: Bool = true
     
     override func viewDidLoad() {
@@ -41,8 +46,10 @@ class DialogViewController: UIViewController {
         super.viewDidAppear(animated)
         popoverManager.viewDidAppear(completion: nil)
     }
-    
-    func addBackgroundMask() {
+    /**
+     Adds the background mask, sends it to the back and sets it to the popover background mask.
+     */
+    private func addBackgroundMask() {
         let color = UIColor.black.withAlphaComponent(0.5)
         let button = UIButton()
         button.backgroundColor = color
@@ -52,14 +59,18 @@ class DialogViewController: UIViewController {
         popoverManager.backgroundMaskButton = button
     }
     
+    
     @objc
-    func backgroundDidPress(_ sender: Any?){
+    private func backgroundDidPress(_ sender: Any?){
         if dismissOnBackgroundPress {
             close()
         }
     }
     
-    func close(){
+    /**
+     Finishes the presentation
+     */
+    @IBAction func close(){
         popoverManager.finish{
             self.dismiss(animated: false, completion: nil)
         }
