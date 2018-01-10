@@ -22,7 +22,7 @@
                                 <rect key="frame" x="138" y="318" width="98" height="30"/>
                                 <state key="normal" title="Open Popover"/>
                                 <connections>
-                                    <segue destination="6jv-pZ-Mzv" kind="presentation" animates="NO" id="e9M-0A-J05"/>
+                                    <segue destination="6jv-pZ-Mzv" kind="presentation" id="0Id-Mj-jkQ"/>
                                 </connections>
                             </button>
                         </subviews>
